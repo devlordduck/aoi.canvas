@@ -32,12 +32,12 @@
   },
   "dependencies": {
     "@napi-rs/canvas": "^0.1.44",
-    "gif-encoder-2": "^1.0.5"
+    "gif-encoder-2": "^1.0.5",
+    "gif-frames": "^1.0.1"
   },
   "devDependencies": {
     "aoi.js": "^6.7.1",
     "discord.js": "^14.14.1",
-    "gif-frames": "^1.0.1",
     "typescript": "^5.4.5"
   }
 }
