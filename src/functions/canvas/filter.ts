@@ -35,10 +35,7 @@ export default new AoiFunction<"djs">({
         const data = ctx.util.aoiFunc(ctx);
         const [ name, method, filter, value ] = ctx.params;
 
-        const canvas = name 
-            ? ctx.data.canvasManager?.get(name)
-            : !name && ctx.data.canvas && ctx.data.canvas[ctx.data.canvas.length - 1] instanceof CanvasBuilder 
-                ? ctx.data.canvas[ctx.data.canvas.length - 1] : null;
+        const canvas = ctx.data.canvasManager?.get(name);
 
         if (!canvas)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No canvas to use filters in.");

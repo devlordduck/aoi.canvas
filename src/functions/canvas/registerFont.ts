@@ -11,9 +11,6 @@ export default new AoiFunction<"djs">({
             name: "src",
             description: "The font source.",
             type: ParamType.String,
-            check: async (v, c) => 
-                await existsSync(join(process.cwd(), v)),
-            checkError: (c) => `Invalid font source. ${resolve(process.cwd(), c.params[0])}`,
             typename: "Path | URL",
         },
         {
@@ -22,13 +19,15 @@ export default new AoiFunction<"djs">({
             type: ParamType.String,
             check: (v) => !GlobalFonts.has(v),
             checkError: () => "Font with provided name already exists.",
-            rest: true,
             optional: true
         }
     ],
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
         let [ src, name ] = ctx.params;
+
+        if (!existsSync(join(process.cwd(), src)))
+            return ctx.aoiError.fnError(ctx, 'custom', {}, `Invalid font source. ${resolve(process.cwd(), src)}`);
 
         registerFonts([{
             src: join(process.cwd(), src),

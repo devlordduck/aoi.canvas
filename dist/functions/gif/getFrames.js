@@ -11,10 +11,16 @@ exports.default = new __1.AoiFunction({
             name: "src",
             description: "The gif.",
             type: __1.ParamType.String,
-            check: async (v, c) => c.checkType(c, { type: __1.ParamType.Url }, v)
-                || await (0, node_fs_1.existsSync)(v) || (v.startsWith("gif:")
-                && c.data.gifManager && c.data.canvasManager instanceof __1.GIFManager && c.data.gifManager.get(v.split("gif:").slice(1).join(":"))),
-            optional: true
+            check: (v, c) => c.checkType(c, { type: __1.ParamType.Url }, v) ? true
+                : (0, node_fs_1.existsSync)(v) || (v.startsWith("gif://")
+                    && c.data.gifManager
+                    && c.data.canvasManager instanceof __1.GIFManager
+                    && c.data.gifManager.get(v.split("gif:").slice(1).join(":"))) ? true : false
+        },
+        {
+            name: "output",
+            description: "Output array name.",
+            type: __1.ParamType.String
         },
         {
             name: "amount",
@@ -26,10 +32,10 @@ exports.default = new __1.AoiFunction({
     ],
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
-        let [src, amount] = ctx.params;
-        if (src.startsWith("gif:"))
+        let [src, output, amount] = ctx.params;
+        if (src.startsWith("gif://"))
             src = ctx.data.gifManager?.get(src.split("gif:").slice(1).join(":")).out.getData();
-        data.result = JSON.stringify(await gifframes({ url: src, frames: amount ? amount - 1 : "all", outputType: "png" })
+        const frames = await gifframes({ url: src, frames: amount ? amount - 1 : "all", outputType: "png" })
             .then((data) => data.map((x) => {
             const data = x.getImage().data;
             const colors = [];
@@ -38,7 +44,9 @@ exports.default = new __1.AoiFunction({
             }
             ;
             return colors;
-        })) ?? []);
+        })) ?? [];
+        ctx.data.arrays = ctx.data.arrays ?? [];
+        ctx.data.arrays[output] = frames;
         return {
             code: ctx.util.setCode(data),
             data: ctx.data

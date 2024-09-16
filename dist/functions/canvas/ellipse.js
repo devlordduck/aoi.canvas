@@ -10,8 +10,7 @@ exports.default = new __1.AoiFunction({
             description: "Name of the canvas.",
             type: __1.ParamType.String,
             check: (v, c) => !!(c.data.canvasManager && c.data.canvasManager instanceof __1.CanvasManager && c.data.canvasManager.get(v)),
-            checkError: () => "No canvas with provided name found.",
-            optional: true
+            checkError: () => "No canvas with provided name found."
         },
         {
             name: "x",
@@ -62,10 +61,7 @@ exports.default = new __1.AoiFunction({
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
         let [name, x, y, rX, rY, rotation, sAngle, eAngle, counterclockwise] = ctx.params;
-        const canvas = name
-            ? ctx.data.canvasManager?.get(name)
-            : !name && ctx.data.canvas && ctx.data.canvas[ctx.data.canvas.length - 1] instanceof __1.CanvasBuilder
-                ? ctx.data.canvas[ctx.data.canvas.length - 1] : null;
+        const canvas = ctx.data.canvasManager?.get(name);
         if (!canvas)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No canvas to add a translation transformation in.");
         canvas.ctx.ellipse(x, y, rX, rY, rotation, sAngle, eAngle, counterclockwise);

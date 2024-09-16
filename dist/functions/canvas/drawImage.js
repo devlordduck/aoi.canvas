@@ -11,20 +11,23 @@ exports.default = new __1.AoiFunction({
             description: "Name of the canvas.",
             type: __1.ParamType.String,
             check: (v, c) => !!(c.data.canvasManager && c.data.canvasManager instanceof __1.CanvasManager && c.data.canvasManager.get(v)),
-            checkError: () => "No canvas with provided name found.",
-            optional: true
+            checkError: () => "No canvas with provided name found."
         },
         {
             name: "path",
             description: "Path or url to the image.",
             type: __1.ParamType.String,
-            typename: "Path | URL | 'canvas:name'",
-            check: async (v, c) => c.checkType(c, { type: __1.ParamType.Url }, v)
-                || await (0, node_fs_1.existsSync)(v)
-                || (v?.toLowerCase().startsWith('canvas:')
-                    ? (c.data.canvasManager
-                        && c.data.canvasManager instanceof __1.CanvasManager
-                        && c.data.canvasManager.get(v.split(':').slice(1).join())) : undefined),
+            typename: "Path | URL | Canvas | Image",
+            check: (v, c) => c.checkType(c, { type: __1.ParamType.Url }, v) ? true
+                : (0, node_fs_1.existsSync)(v) ? true
+                    : (v?.toLowerCase().startsWith('canvas://')
+                        ? (c.data.canvasManager
+                            && c.data.canvasManager instanceof __1.CanvasManager
+                            && c.data.canvasManager.get(v.split(':').slice(1).join())) : undefined) ? true
+                        : (v?.toLowerCase().startsWith('images://')
+                            ? (c.data.imageManager
+                                && c.data.imageManager instanceof __1.CanvasManager
+                                && c.data.imageManager.get(v.split(':').slice(1).join())) : undefined) ? true : false
         },
         {
             name: "x",
@@ -61,14 +64,14 @@ exports.default = new __1.AoiFunction({
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
         let [name, path, x, y, width, height, radius] = ctx.params;
-        const canvas = name
-            ? ctx.data.canvasManager?.get(name)
-            : !name && ctx.data.canvas && ctx.data.canvas[ctx.data.canvas.length - 1] instanceof __1.CanvasBuilder
-                ? ctx.data.canvas[ctx.data.canvas.length - 1] : null;
+        const canvas = ctx.data.canvasManager?.get(name);
         if (!canvas)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No canvas to draw an image on.");
-        if (path.toLowerCase().startsWith('canvas:'))
-            path = ctx.data.canvasManager?.get(path.split(':').slice(1).join())?.buffer;
+        const a = path.split('://').slice(1).join('://');
+        if (path.toLowerCase().startsWith('canvas://'))
+            path = ctx.data.canvasManager?.get(a)?.buffer;
+        else if (path.toLowerCase().startsWith('images://'))
+            path = ctx.data.imageManager?.get(a);
         await canvas.drawImage(path, x, y, width, height, radius);
         return {
             code: ctx.util.setCode(data),

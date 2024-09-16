@@ -2,3 +2,4 @@ node_modules
 database
 src/__tests__
 dist/__tests__
+database

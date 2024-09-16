@@ -10,11 +10,18 @@ export default new AoiFunction<"djs">({
             name: "src",
             description: "The gif.",
             type: ParamType.String,
-            check: async (v, c) => 
-                c.checkType(c, { type: ParamType.Url } as Param, v)
-                || await existsSync(v) || (v.startsWith("gif:")
-                    && c.data.gifManager && c.data.canvasManager instanceof GIFManager && c.data.gifManager.get(v.split("gif:").slice(1).join(":"))),
-            optional: true
+            check: (v, c) => 
+                c.checkType(c, { type: ParamType.Url } as Param, v) ? true 
+                    : existsSync(v) || (v.startsWith("gif://")
+                        && c.data.gifManager
+                        && c.data.canvasManager instanceof GIFManager
+                        && c.data.gifManager.get(v.split("gif:").slice(1).join(":"))
+                    ) ? true : false
+        },
+        {
+            name: "output",
+            description: "Output array name.",
+            type: ParamType.String
         },
         {
             name: "amount",
@@ -26,29 +33,29 @@ export default new AoiFunction<"djs">({
     ],
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
-        let [ src, amount ] = ctx.params;
+        let [ src, output, amount ] = ctx.params;
 
-        if (src.startsWith("gif:"))
+        if (src.startsWith("gif://"))
             src = ctx.data.gifManager?.get(src.split("gif:").slice(1).join(":")).out.getData();
 
-        data.result = JSON.stringify(
-            await gifframes({ url: src, frames: amount ? amount - 1 : "all", outputType: "png" })
-                .then((data: any) => data.map((x: any) => {
-                    const data = x.getImage().data;
-                    const colors = [];
+        const frames = await gifframes({ url: src, frames: amount ? amount - 1 : "all", outputType: "png" })
+            .then((data: any) => data.map((x: any) => {
+                const data = x.getImage().data;
+                const colors = [];
 
-                    for (let i = 0; i < data.length; i += 4) {
-                        colors.push(CanvasUtil.rgbaToHex(
-                            data[i] ?? 0,
-                            data[i + 1] ?? 0,
-                            data[i + 2] ?? 0,
-                            (data[i + 3] ?? 0) / 255
-                        ));
-                    };
+                for (let i = 0; i < data.length; i += 4) {
+                    colors.push(CanvasUtil.rgbaToHex(
+                        data[i] ?? 0,
+                        data[i + 1] ?? 0,
+                        data[i + 2] ?? 0,
+                        (data[i + 3] ?? 0) / 255
+                    ));
+                };
 
-                    return colors;
-                })) ?? []
-        ); 
+                return colors;
+            })) ?? [];
+        ctx.data.arrays = ctx.data.arrays ?? [];
+        ctx.data.arrays[output] = frames;
 
         return {
             code: ctx.util.setCode(data),

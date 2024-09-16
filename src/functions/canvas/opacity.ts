@@ -24,10 +24,7 @@ export default new AoiFunction<"djs">({
         const data = ctx.util.aoiFunc(ctx);
         const [ name, value ] = ctx.params;
 
-        const canvas = name 
-            ? ctx.data.canvasManager?.get(name)?.ctx
-            : !name && ctx.data.canvas && ctx.data.canvas[ctx.data.canvas.length - 1] instanceof CanvasBuilder 
-                ? ctx.data.canvas[ctx.data.canvas.length - 1].ctx : null;
+        const canvas = ctx.data.canvasManager?.get(name)?.ctx;
 
         if (!canvas)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No canvas.");

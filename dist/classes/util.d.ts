@@ -1,5 +1,9 @@
+import { Canvas, Image } from '@napi-rs/canvas';
+import { CanvasBuilder } from '..';
 export declare const fontRegex: RegExp;
+export declare function isURL(url: string): boolean;
 export declare class CanvasUtil {
+    static fetchImage: (src: string | Image | Buffer | CanvasBuilder | Canvas) => Promise<Image>;
     static isValidFont: (font: string) => boolean;
     static parseFilters: (filters: string) => {
         filter: string;

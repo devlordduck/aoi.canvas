@@ -1,6 +1,6 @@
-import { SKRSContext2D, createCanvas, loadImage, Image } from '@napi-rs/canvas';
+import { SKRSContext2D, createCanvas, Image } from '@napi-rs/canvas';
 import { CanvasUtil, fontRegex } from './util';
-import { FillOrStrokeOrClear, FilterMethod, Filters } from '../typings';
+import { FillOrStrokeOrClear, FilterMethod, Filters, textAlign, textBaseline } from '../typings';
 
 // Builder
 export class CanvasBuilder {
@@ -16,15 +16,20 @@ export class CanvasBuilder {
     this.height = height;
   };
 
-  rect (type: FillOrStrokeOrClear.none | FillOrStrokeOrClear.fill | FillOrStrokeOrClear, x: number, y: number, width?: number, height?: number, radius?: number | number[]): void;
-  rect (type: FillOrStrokeOrClear.stroke, x: number, y: number, width?: number, height?: number, lineWidth?: number, radius?: number | number[]): void;
-  public rect (type: FillOrStrokeOrClear, x: number, y: number, width?: number, height?: number, a?: number | number[], b?: number | number[]) {
+  rect (type: FillOrStrokeOrClear.none | FillOrStrokeOrClear.fill | FillOrStrokeOrClear, style: string | CanvasGradient | CanvasPattern, x: number, y: number, width?: number, height?: number, radius?: number | number[]): void;
+  rect (type: FillOrStrokeOrClear.stroke, style: string | CanvasGradient | CanvasPattern, x: number, y: number, width?: number, height?: number, lineWidth?: number, radius?: number | number[]): void;
+  public rect (type: FillOrStrokeOrClear, style: string | CanvasGradient | CanvasPattern, x: number, y: number, width?: number, height?: number, a?: number | number[], b?: number | number[]) {
     const ctx = this.ctx;
     width??= ctx.canvas.width;
     height??= ctx.canvas.height;
+
+    const s = type === FillOrStrokeOrClear.fill ? 'fillStyle' : 'strokeStyle';
+    const oldstyle = ctx[s];
     
+    ctx[s] = style;
+
     if (type === FillOrStrokeOrClear.none)
-      return ctx.roundRect(x, y, width, height, a);
+      return (ctx.roundRect(x, y, width, height, a), ctx[s] = oldstyle);
 
     ctx.save();
     ctx.beginPath();
@@ -40,62 +45,114 @@ export class CanvasBuilder {
     })[type]();
 
     ctx.restore();
+    ctx[s] = oldstyle;
   };
 
-  text(type: FillOrStrokeOrClear.fill, text: string, x: number, y: number, font: string, maxWidth?: number, multiline?: boolean, wrap?: boolean, lineOffset?: number): void;
-  text(type: FillOrStrokeOrClear.stroke, text: string, x: number, y: number, font: string, strokeWidth?: number, maxWidth?: number, multiline?: boolean, wrap?: boolean, lineOffset?: number): void;
-  public async text (type: Exclude<Exclude<FillOrStrokeOrClear, FillOrStrokeOrClear.clear>, FillOrStrokeOrClear.none>, text: string, x: number, y: number, font: string, a?: number, b?: number | boolean, c?: boolean, d?: boolean | number, e?: number) {
-    const ctx = this.ctx,
-          optional = [a,b,c,d,e],
-          [
-            strokeWidth,
-            maxWidth,
-            multiline,
-            wrap,
-            lineOffset
-          ] = (type === FillOrStrokeOrClear.fill ? [undefined, ...optional.slice(0, -1)] : optional) as [number?, number?, boolean?, boolean?, number?],
-          oldfont = ctx.font,
-          oldStrokeWidth = ctx.lineWidth,
-          fontsize = parseFloat((fontRegex.exec(font) as RegExpExecArray)[4]),
-          lines = multiline ? text.split('\n') : [text],
-          func = async (text: string, x: number, y: number, maxWidth?: number) =>
-            type === FillOrStrokeOrClear.fill 
-              ? await ctx.fillText(text, x, y, maxWidth)
-              : await ctx.strokeText(text, x, y, maxWidth);
-    let offset = y;
-
-    ctx.lineWidth = strokeWidth ?? oldStrokeWidth;
-    ctx.font = font;
-
-    if (multiline || wrap) {
-      lines.forEach(t => {
-        if (wrap) {
-          let line = '';
-          
-          t.split(' ').forEach((word, i) => {
-            if (maxWidth && ctx.measureText(line + word + ' ').width > maxWidth && i > 0) {
-              func(line, x, offset, maxWidth);
-              line = word + ' ';
-              offset += fontsize + (lineOffset ?? 0);
-            } else line += word + ' ';
-          });
-      
-          func(line, x, offset, maxWidth);
-          offset += fontsize + (lineOffset ?? 0);
-        } else {
-          func(t, x, offset, maxWidth);
-          offset += fontsize + (lineOffset ?? 0);
-        };
-      });
-    } else func(text, x, y, maxWidth);
-
-    ctx.lineWidth = oldStrokeWidth;
-    ctx.font = oldfont;
-  };
-
-  public async drawImage (image: string | Buffer | Uint8Array | Image | ArrayBufferLike | URL, x: number, y: number, width?: number, height?: number, radius?: number | number[]) {
+  public async fillText (
+    style: string | CanvasGradient, 
+    text: string, 
+    x: number, 
+    y: number, 
+    font: string, 
+    maxWidth?: number, 
+    align?: textAlign, 
+    baseline?: textBaseline, 
+    multiline?: boolean, 
+    wrap?: boolean, 
+    lineOffset?: number
+  ) {
     const ctx = this.ctx;
-    image = await loadImage(image, { maxRedirects: 30 });
+    const oldfont = ctx.font;
+    const oldstyle = ctx.fillStyle;
+    const oldalign = ctx.textAlign;
+    const oldbaseline = ctx.textBaseline;
+
+    ctx.font = font;
+    ctx.fillStyle = style;
+    ctx.textAlign = align ?? oldalign;
+    ctx.textBaseline = (baseline ?? oldbaseline) as any;
+  
+    const lines = multiline ? text.split('\n') : [text];
+    let offset = y;
+    
+    lines.forEach((line) => {
+      if (wrap && maxWidth) {
+        const words = line.split(' ');
+        let currentLine = '';
+  
+        words.forEach((word, i) => {
+          const testLine = currentLine + word + ' ';
+          const width = ctx.measureText(testLine).width;
+          if (width > maxWidth && i > 0) {
+            ctx.fillText(currentLine, x, offset, maxWidth);
+            currentLine = word + ' ';
+            offset += parseFloat(ctx.font) + (lineOffset ?? 0);
+          } else currentLine = testLine;
+        });
+  
+        ctx.fillText(currentLine, x, offset, maxWidth);
+      } else ctx.fillText(line, x, offset, maxWidth);
+
+      offset += parseFloat(ctx.font) + (lineOffset ?? 0);
+    });
+
+    ctx.font = oldfont;
+    ctx.fillStyle = oldstyle;
+    ctx.textAlign = oldalign;
+    ctx.textBaseline = oldbaseline;
+  };  
+
+  public async strokeText (style: string | CanvasGradient, text: string, x: number, y: number, font: string, strokeWidth?: number, maxWidth?: number, align?: textAlign, baseline?: textBaseline, multiline?: boolean, wrap?: boolean, lineOffset?: number) {
+    const ctx = this.ctx;
+    const oldfont = ctx.font;
+    const oldstyle = ctx.strokeStyle;
+    const oldalign = ctx.textAlign;
+    const oldbaseline = ctx.textBaseline;
+    const oldwidth = ctx.lineWidth;
+
+    ctx.font = font;
+    ctx.strokeStyle = style;
+    ctx.lineWidth = strokeWidth ?? oldwidth;
+    ctx.textAlign = align ?? oldalign;
+    ctx.textBaseline = (baseline ?? oldbaseline) as any;
+  
+    const lines = multiline ? text.split('\n') : [text];
+    let offset = y;
+    
+    lines.forEach((line) => {
+      if (wrap && maxWidth) {
+        const words = line.split(' ');
+        let currentLine = '';
+  
+        words.forEach((word, i) => {
+          const testLine = currentLine + word + ' ';
+          const width = ctx.measureText(testLine).width;
+          if (width > maxWidth && i > 0) {
+            ctx.strokeText(currentLine, x, offset, maxWidth);
+            currentLine = word + ' ';
+            offset += parseFloat(ctx.font) + (lineOffset ?? 0);
+          } else currentLine = testLine;
+        });
+  
+        ctx.strokeText(currentLine, x, offset, maxWidth);
+      } else ctx.strokeText(line, x, offset, maxWidth);
+      
+      offset += parseFloat(ctx.font) + (lineOffset ?? 0);
+    });
+
+    ctx.font = oldfont;
+    ctx.strokeStyle = oldstyle;
+    ctx.textAlign = oldalign;
+    ctx.textBaseline = oldbaseline;
+  };
+
+  public async drawImage (image: string | Image, x: number, y: number, width?: number, height?: number, radius?: number | number[]) {
+    const ctx = this.ctx;
+    if (typeof image === 'string')
+      image = await CanvasUtil.fetchImage(image);
+
+    if (!image) return;
+    
     width??= image.width;
     height??= image.height;
 
@@ -112,15 +169,12 @@ export class CanvasBuilder {
 
   public measureText (text: string, font: string) {
     const ctx = this.ctx,
-          oldcolor = ctx.fillStyle,
           oldfont = ctx.font;
     
-    ctx.fillStyle = '#000000';
     ctx.font = font;
     
     const metrics = ctx.measureText(text);
 
-    ctx.fillStyle = oldcolor;
     ctx.font = oldfont;
 
     return metrics;

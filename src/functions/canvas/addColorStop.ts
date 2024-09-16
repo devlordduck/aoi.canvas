@@ -8,7 +8,7 @@ export default new AoiFunction<"djs">({
             name: "gradient",
             description: "Name of the gradient.",
             type: ParamType.String,
-            check: (v, c) => !!(c.data.gradients && c.data.gradients instanceof GradientManager && c.data.gradients.get(v)),
+            check: (v, c) => !!(c.data.gradientManager && c.data.gradientManager instanceof GradientManager && c.data.gradientManager.get(v)),
             checkError: () => "No canvas with provided name found.",
             optional: true,
         },
@@ -28,7 +28,7 @@ export default new AoiFunction<"djs">({
         const data = ctx.util.aoiFunc(ctx);
         const [ name, offset, color ] = ctx.params;
 
-        const gradient = name ? ctx.data.gradients?.get(name) : null;
+        const gradient = name ? ctx.data.gradientManager?.get(name) : null;
         
         if (!gradient) {
             ctx.data.colorStops = ctx.data?.colorStops

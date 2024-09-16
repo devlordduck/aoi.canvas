@@ -1,6 +1,6 @@
 import { AoiClient, AoiError, Util } from 'aoi.js';
 import { BaseChannel, CommandInteraction, AttachmentBuilder } from 'discord.js';
-import { CanvasManager, GIFManager, GradientManager, CanvasBuilder } from './classes';
+import { CanvasManager, GIFManager, GradientManager, CanvasBuilder, ImageManager } from './classes';
 const gifencoder = require('gif-encoder-2');
 
 // Interfaces
@@ -13,14 +13,15 @@ export interface AoiD {
     data: {
         canvasManager?: CanvasManager;
         gifManager?: GIFManager;
-        gradients?: GradientManager;
-        canvas?: CanvasBuilder[];
-        gif?: typeof gifencoder[];
+        imageManager?: ImageManager;
+        gradientManager?: GradientManager;
         colorStops?: [number, string][];
         interaction: CommandInteraction;
+        [i: string | number | symbol]: any;
     },
-    files: AttachmentBuilder[],
-    util: typeof Util
+    files: AttachmentBuilder[];
+    util: typeof Util;
+    [i: string | number | symbol]: any;
 };
 export interface Param {
     name: string;

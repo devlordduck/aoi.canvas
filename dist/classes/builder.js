@@ -16,12 +16,15 @@ class CanvasBuilder {
         this.height = height;
     }
     ;
-    rect(type, x, y, width, height, a, b) {
+    rect(type, style, x, y, width, height, a, b) {
         const ctx = this.ctx;
         width ??= ctx.canvas.width;
         height ??= ctx.canvas.height;
+        const s = type === typings_1.FillOrStrokeOrClear.fill ? 'fillStyle' : 'strokeStyle';
+        const oldstyle = ctx[s];
+        ctx[s] = style;
         if (type === typings_1.FillOrStrokeOrClear.none)
-            return ctx.roundRect(x, y, width, height, a);
+            return (ctx.roundRect(x, y, width, height, a), ctx[s] = oldstyle);
         ctx.save();
         ctx.beginPath();
         ctx.roundRect(x, y, width, height, type !== typings_1.FillOrStrokeOrClear.stroke ? a : b);
@@ -34,47 +37,95 @@ class CanvasBuilder {
             }
         })[type]();
         ctx.restore();
+        ctx[s] = oldstyle;
     }
     ;
-    async text(type, text, x, y, font, a, b, c, d, e) {
-        const ctx = this.ctx, optional = [a, b, c, d, e], [strokeWidth, maxWidth, multiline, wrap, lineOffset] = (type === typings_1.FillOrStrokeOrClear.fill ? [undefined, ...optional.slice(0, -1)] : optional), oldfont = ctx.font, oldStrokeWidth = ctx.lineWidth, fontsize = parseFloat(util_1.fontRegex.exec(font)[4]), lines = multiline ? text.split('\n') : [text], func = async (text, x, y, maxWidth) => type === typings_1.FillOrStrokeOrClear.fill
-            ? await ctx.fillText(text, x, y, maxWidth)
-            : await ctx.strokeText(text, x, y, maxWidth);
-        let offset = y;
-        ctx.lineWidth = strokeWidth ?? oldStrokeWidth;
+    async fillText(style, text, x, y, font, maxWidth, align, baseline, multiline, wrap, lineOffset) {
+        const ctx = this.ctx;
+        const oldfont = ctx.font;
+        const oldstyle = ctx.fillStyle;
+        const oldalign = ctx.textAlign;
+        const oldbaseline = ctx.textBaseline;
         ctx.font = font;
-        if (multiline || wrap) {
-            lines.forEach(t => {
-                if (wrap) {
-                    let line = '';
-                    t.split(' ').forEach((word, i) => {
-                        if (maxWidth && ctx.measureText(line + word + ' ').width > maxWidth && i > 0) {
-                            func(line, x, offset, maxWidth);
-                            line = word + ' ';
-                            offset += fontsize + (lineOffset ?? 0);
-                        }
-                        else
-                            line += word + ' ';
-                    });
-                    func(line, x, offset, maxWidth);
-                    offset += fontsize + (lineOffset ?? 0);
-                }
-                else {
-                    func(t, x, offset, maxWidth);
-                    offset += fontsize + (lineOffset ?? 0);
-                }
-                ;
-            });
-        }
-        else
-            func(text, x, y, maxWidth);
-        ctx.lineWidth = oldStrokeWidth;
+        ctx.fillStyle = style;
+        ctx.textAlign = align ?? oldalign;
+        ctx.textBaseline = (baseline ?? oldbaseline);
+        const lines = multiline ? text.split('\n') : [text];
+        let offset = y;
+        lines.forEach((line) => {
+            if (wrap && maxWidth) {
+                const words = line.split(' ');
+                let currentLine = '';
+                words.forEach((word, i) => {
+                    const testLine = currentLine + word + ' ';
+                    const width = ctx.measureText(testLine).width;
+                    if (width > maxWidth && i > 0) {
+                        ctx.fillText(currentLine, x, offset, maxWidth);
+                        currentLine = word + ' ';
+                        offset += parseFloat(ctx.font) + (lineOffset ?? 0);
+                    }
+                    else
+                        currentLine = testLine;
+                });
+                ctx.fillText(currentLine, x, offset, maxWidth);
+            }
+            else
+                ctx.fillText(line, x, offset, maxWidth);
+            offset += parseFloat(ctx.font) + (lineOffset ?? 0);
+        });
         ctx.font = oldfont;
+        ctx.fillStyle = oldstyle;
+        ctx.textAlign = oldalign;
+        ctx.textBaseline = oldbaseline;
+    }
+    ;
+    async strokeText(style, text, x, y, font, strokeWidth, maxWidth, align, baseline, multiline, wrap, lineOffset) {
+        const ctx = this.ctx;
+        const oldfont = ctx.font;
+        const oldstyle = ctx.strokeStyle;
+        const oldalign = ctx.textAlign;
+        const oldbaseline = ctx.textBaseline;
+        const oldwidth = ctx.lineWidth;
+        ctx.font = font;
+        ctx.strokeStyle = style;
+        ctx.lineWidth = strokeWidth ?? oldwidth;
+        ctx.textAlign = align ?? oldalign;
+        ctx.textBaseline = (baseline ?? oldbaseline);
+        const lines = multiline ? text.split('\n') : [text];
+        let offset = y;
+        lines.forEach((line) => {
+            if (wrap && maxWidth) {
+                const words = line.split(' ');
+                let currentLine = '';
+                words.forEach((word, i) => {
+                    const testLine = currentLine + word + ' ';
+                    const width = ctx.measureText(testLine).width;
+                    if (width > maxWidth && i > 0) {
+                        ctx.strokeText(currentLine, x, offset, maxWidth);
+                        currentLine = word + ' ';
+                        offset += parseFloat(ctx.font) + (lineOffset ?? 0);
+                    }
+                    else
+                        currentLine = testLine;
+                });
+                ctx.strokeText(currentLine, x, offset, maxWidth);
+            }
+            else
+                ctx.strokeText(line, x, offset, maxWidth);
+            offset += parseFloat(ctx.font) + (lineOffset ?? 0);
+        });
+        ctx.font = oldfont;
+        ctx.strokeStyle = oldstyle;
+        ctx.textAlign = oldalign;
+        ctx.textBaseline = oldbaseline;
     }
     ;
     async drawImage(image, x, y, width, height, radius) {
         const ctx = this.ctx;
-        image = await (0, canvas_1.loadImage)(image, { maxRedirects: 30 });
+        if (typeof image === 'string')
+            image = await util_1.CanvasUtil.fetchImage(image);
+        if (!image)
+            return;
         width ??= image.width;
         height ??= image.height;
         if (!radius)
@@ -88,11 +139,9 @@ class CanvasBuilder {
     }
     ;
     measureText(text, font) {
-        const ctx = this.ctx, oldcolor = ctx.fillStyle, oldfont = ctx.font;
-        ctx.fillStyle = '#000000';
+        const ctx = this.ctx, oldfont = ctx.font;
         ctx.font = font;
         const metrics = ctx.measureText(text);
-        ctx.fillStyle = oldcolor;
         ctx.font = oldfont;
         return metrics;
     }

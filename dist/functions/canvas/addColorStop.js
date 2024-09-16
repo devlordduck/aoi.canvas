@@ -9,7 +9,7 @@ exports.default = new __1.AoiFunction({
             name: "gradient",
             description: "Name of the gradient.",
             type: __1.ParamType.String,
-            check: (v, c) => !!(c.data.gradients && c.data.gradients instanceof __1.GradientManager && c.data.gradients.get(v)),
+            check: (v, c) => !!(c.data.gradientManager && c.data.gradientManager instanceof __1.GradientManager && c.data.gradientManager.get(v)),
             checkError: () => "No canvas with provided name found.",
             optional: true,
         },
@@ -28,7 +28,7 @@ exports.default = new __1.AoiFunction({
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
         const [name, offset, color] = ctx.params;
-        const gradient = name ? ctx.data.gradients?.get(name) : null;
+        const gradient = name ? ctx.data.gradientManager?.get(name) : null;
         if (!gradient) {
             ctx.data.colorStops = ctx.data?.colorStops
                 ? [...ctx.data.colorStops, [offset / 100, color]]

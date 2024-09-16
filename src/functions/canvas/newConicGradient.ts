@@ -40,14 +40,14 @@ export default new AoiFunction<"djs">({
         if (!ctx.data?.colorStops)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No color stops.");
 
-        if (!ctx.data?.gradients)
-            ctx.data.gradients = new GradientManager;
+        if (!ctx.data?.gradientManager)
+            ctx.data.gradientManager = new GradientManager;
 
-        if (ctx.data.gradients.get(name))
+        if (ctx.data.gradientManager.get(name))
             return ctx.aoiError.fnError(ctx, "custom", {}, `Gradient with name "${name}" already exists.`);
 
-        ctx.data.gradients.create(name, GradientType.conic, [sAngle, x, y]);
-        ctx.data.colorStops.forEach(x => ctx.data.gradients?.get(name)?.addColorStop(...x));
+        ctx.data.gradientManager.create(name, GradientType.conic, [sAngle, x, y]);
+        ctx.data.colorStops.forEach(x => ctx.data.gradientManager?.get(name)?.addColorStop(...x));
 
         return {
             code: ctx.util.setCode(data),

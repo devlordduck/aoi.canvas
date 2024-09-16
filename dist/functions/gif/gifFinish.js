@@ -10,17 +10,13 @@ exports.default = new __1.AoiFunction({
             description: "Name of the GIF.",
             type: __1.ParamType.String,
             check: (v, c) => !!(c.data.gifManager && c.data.gifManager instanceof __1.GIFManager && c.data.gifManager.get(v)),
-            checkError: () => "No GIF with provided name found.",
-            optional: true
+            checkError: () => "No GIF with provided name found."
         }
     ],
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
         let [name] = ctx.params;
-        const gif = name
-            ? ctx.data.gifManager?.get(name)
-            : !name && ctx.data.gif
-                ? ctx.data.gif[ctx.data.gif.length - 1] : null;
+        const gif = ctx.data.gifManager?.get(name);
         if (!gif)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No gif.");
         gif.finish();

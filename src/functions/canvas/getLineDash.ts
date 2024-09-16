@@ -9,18 +9,14 @@ export default new AoiFunction<"djs">({
             description: "Name of the canvas to set the line dash in.",
             type: ParamType.String,
             check: (v, c) => !!(c.data.canvasManager && c.data.canvasManager instanceof CanvasManager && c.data.canvasManager.get(v)),
-            checkError: () => "No canvas with provided name found.",
-            optional: true
+            checkError: () => "No canvas with provided name found."
         }
     ],
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
         let [ name ] = ctx.params;
 
-        const canvas = name 
-            ? ctx.data.canvasManager?.get(name)
-            : !name && ctx.data.canvas && ctx.data.canvas[ctx.data.canvas.length - 1] instanceof CanvasBuilder 
-                ? ctx.data.canvas[ctx.data.canvas.length - 1] : null;
+        const canvas = ctx.data.canvasManager?.get(name);
 
         if (!canvas)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No canvas to get the line dash from.");

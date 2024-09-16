@@ -9,8 +9,7 @@ export default new AoiFunction<"djs">({
             description: "Name of the GIF.",
             type: ParamType.String,
             check: (v, c) => !!(c.data.gifManager && c.data.gifManager instanceof GIFManager && c.data.gifManager.get(v)),
-            checkError: () => "No GIF with provided name found.",
-            optional: true
+            checkError: () => "No GIF with provided name found."
         }
     ],
     code: async (ctx) => {

@@ -1,7 +1,6 @@
 import { AoiClient, AoiError, Util } from 'aoi.js';
 import { BaseChannel, CommandInteraction, AttachmentBuilder } from 'discord.js';
-import { CanvasManager, GIFManager, GradientManager, CanvasBuilder } from './classes';
-declare const gifencoder: any;
+import { CanvasManager, GIFManager, GradientManager, ImageManager } from './classes';
 export interface AoiD {
     error: Function;
     interpreter: Function;
@@ -11,14 +10,15 @@ export interface AoiD {
     data: {
         canvasManager?: CanvasManager;
         gifManager?: GIFManager;
-        gradients?: GradientManager;
-        canvas?: CanvasBuilder[];
-        gif?: typeof gifencoder[];
+        imageManager?: ImageManager;
+        gradientManager?: GradientManager;
         colorStops?: [number, string][];
         interaction: CommandInteraction;
+        [i: string | number | symbol]: any;
     };
     files: AttachmentBuilder[];
     util: typeof Util;
+    [i: string | number | symbol]: any;
 }
 export interface Param {
     name: string;
@@ -168,5 +168,4 @@ export declare enum compositingOperation {
     "luminosity" = 25
 }
 export type RepeatType = "repeat" | "repeat-x" | "repeat-y" | "no-repeat" | null;
-export {};
 //# sourceMappingURL=typings.d.ts.map

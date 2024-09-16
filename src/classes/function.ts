@@ -152,9 +152,8 @@ export class AoiFunction<T extends "aoi.js" | "djs"> {
                         return d.aoiError.fnError(d, "custom", {}, "Too many fields.");
 
                     let i = 0;
-                    let minus = 0;
                     while (i < this.data.params.length) {
-                        const value = params[i - minus];
+                        const value = params[i];
                         const param = this.data.params[i];
 
                         if (!param.optional && (value === undefined || value === null || value.length === 0))
@@ -163,7 +162,7 @@ export class AoiFunction<T extends "aoi.js" | "djs"> {
                         if (param.rest) {
                             const rest = [];
 
-                            for (let ri = i - minus; ri < params.length; ri++) {
+                            for (let ri = i; ri < params.length; ri++) {
                                 const rvalue = params[ri];
                                 
                                 if (param.optional && (rvalue === undefined || rvalue === null || rvalue.length === 0)) {
@@ -198,34 +197,17 @@ export class AoiFunction<T extends "aoi.js" | "djs"> {
                         const r = await checkType(d, param, value);
                         const check = param.check && !await param.check(r, context);
 
-                        if ((r === undefined || r === null) || check) {
-                            if (param.optional && this.data.params[i + 1]) {
-                                const nextparam = this.data.params[i + 1];
-                                const nextr = await checkType(d, nextparam, value);
-                                const nextcheck = nextparam.check && await nextparam.check(r, context);
-
-                                if ((nextr !== undefined && nextr !== null) || nextcheck) {
-                                    context.params.push(
-                                        param.default ? await param.default(context) : null,
-                                        nextr
-                                    );
-                                    i += 2;
-                                    minus++;
-                                    continue;
-                                };
-                            };
-
+                        if ((r === undefined || r === null) || check)
                             return d.aoiError.fnError(
                                 d, "custom", {}, 
                                 check && param.checkError 
                                  ? await param.checkError(value, context) 
                                  : `Invalid ${param.name.charAt(0).toUpperCase() + param.name.slice(1)} value.`
                             );
-                        };
                         
                         context.params.push(r);
                         i++;
-                   };
+                    };
                 };
 
                 return typeof this.data.code !== "string" 

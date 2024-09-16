@@ -55,7 +55,9 @@ export const registerFonts = (fonts: { name?: string, src: string }[]): void => 
 
         filename = font.name ?? filename.split('.').slice(0, -1).join('.');
         GlobalFonts.registerFromPath(font.src, filename);
-        log(`Registered '${filename}' font.`);
+        if (GlobalFonts.has(filename))
+            log(`Successfuly registered '${filename}' font.`);
+        else log(`Failed to register font '${filename}'`, 'error');
     } else return registerFonts(readdirSync(font.src).map(x => ({ src: join(font.src, x) })));
 });
 
@@ -67,7 +69,7 @@ export class AoiCanvas {
 
         try {
             (async () => {
-                const res = await (await fetch('https://registry.npmjs.org/@aoijs/aoi.canvas', {
+                const res = await (await fetch('https://registry.npmjs.org/aoi.canvas', {
                     headers: {
                         'User-Agent': 'aoi.canvas',
                     },

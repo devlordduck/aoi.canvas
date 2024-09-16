@@ -1,5 +1,5 @@
-import { createCanvas, SKRSContext2D } from '@napi-rs/canvas';
-import { CanvasBuilder, GradientType } from '../';
+import { createCanvas, SKRSContext2D, Image } from '@napi-rs/canvas';
+import { CanvasBuilder, GradientType, CanvasUtil } from '../';
 const gifencoder = require("gif-encoder-2");
 
 export class Manager<T extends any> {
@@ -23,6 +23,8 @@ export class CanvasManager extends Manager<CanvasBuilder> {
   public create = (name: string, width: number, height: number) =>
     this.set(name, new CanvasBuilder(width, height));
 };
+
+export class ImageManager extends Manager<Image> {};
 
 export class GradientManager extends Manager<CanvasGradient> {
   private ctx: SKRSContext2D;

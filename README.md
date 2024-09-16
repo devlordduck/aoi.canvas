@@ -4,13 +4,13 @@
   </a>
 </p>
 
-<h1 align="center">@aoijs/aoi.canvas</h1>
+<h1 align="center">aoi.canvas</h1>
 
 <div align="center">
 
 [![Discord Server](https://img.shields.io/discord/773352845738115102?color=5865F2&logo=discord&logoColor=white)](https://discord.com/invite/HMUfMXDQsV)
-[![NPM Downloads](https://img.shields.io/npm/dt/@aoijs/aoi.canvas.svg?maxAge=3600)](https://www.npmjs.com/package/@aoijs/aoi.canvas)
-[![NPM Version](https://img.shields.io/npm/v/@aoijs/aoi.canvas.svg?maxAge=3600)](https://www.npmjs.com/package/@aoijs/aoi.canvas)
+[![NPM Downloads](https://img.shields.io/npm/dt/@aoijs/aoi.canvas.svg?maxAge=3600)](https://www.npmjs.com/package/aoi.canvas)
+[![NPM Version](https://img.shields.io/npm/v/@aoijs/aoi.canvas.svg?maxAge=3600)](https://www.npmjs.com/package/aoi.canvas)
 
 </div>
 
@@ -61,23 +61,19 @@ client.command({
     name: 'house',
     code: `
         $attachCanvas[mycanvas;house.png]
-        $newCanvas[mycanvas;
-            $stroke[10]
+        
+        $stroke[mycanvas;#03a9f4;10]
 
-            $closePath
-            $lineTo[250;140]
-            $lineTo[150;60]
-            $moveTo[50;140]
-            $beginPath
+        $closePath[mycanvas]
+        $lineTo[mycanvas;250;140]
+        $lineTo[mycanvas;150;60]
+        $moveTo[mycanvas;50;140]
+        $beginPath[mycanvas]
 
-            $fillRect[130;190;40;60]
-            $strokeRect[75;140;150;110]
-            
-            $fillStyle[#03a9f4]
-            $strokeStyle[#03a9f4]
+        $fillRect[mycanvas;#03a9f4;130;190;40;60]
+        $strokeRect[mycanvas;#03a9f4;75;140;150;110;10]
 
-            $setCanvasSize[300;320]
-        ]
+        $createCanvas[mycanvas;300;320]
     `
 });
 ```

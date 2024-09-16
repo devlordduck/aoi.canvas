@@ -1,4 +1,4 @@
-import { AoiFunction, CanvasBuilder, CanvasManager, Param, ParamType } from '../../';
+import { AoiFunction, CanvasManager, Param, ParamType } from '../../';
 import { existsSync } from "node:fs";
 
 export default new AoiFunction<"djs">({
@@ -10,23 +10,27 @@ export default new AoiFunction<"djs">({
             description: "Name of the canvas.",
             type: ParamType.String,
             check: (v, c) => !!(c.data.canvasManager && c.data.canvasManager instanceof CanvasManager && c.data.canvasManager.get(v)),
-            checkError: () => "No canvas with provided name found.",
-            optional: true
+            checkError: () => "No canvas with provided name found."
         },
         {
             name: "path",
             description: "Path or url to the image.",
             type: ParamType.String,
-            typename: "Path | URL | 'canvas:name'",
-            check: async (v, c) => 
-                c.checkType(c, { type: ParamType.Url } as Param, v)
-                || await existsSync(v)
-                || (v?.toLowerCase().startsWith('canvas:')
+            typename: "Path | URL | Canvas | Image",
+            check: (v, c) => c.checkType(c, { type: ParamType.Url } as Param, v) ? true
+                : existsSync(v) ? true
+                    : (v?.toLowerCase().startsWith('canvas://')
                     ? (
                         c.data.canvasManager
                         && c.data.canvasManager instanceof CanvasManager
                         && c.data.canvasManager.get(v.split(':').slice(1).join())
-                    ) : undefined),
+                    ) : undefined) ? true
+                        : (v?.toLowerCase().startsWith('images://')
+                        ? (
+                            c.data.imageManager
+                            && c.data.imageManager instanceof CanvasManager
+                            && c.data.imageManager.get(v.split(':').slice(1).join())
+                        ) : undefined) ? true : false
         },
         {
             name: "x",
@@ -64,16 +68,16 @@ export default new AoiFunction<"djs">({
         const data = ctx.util.aoiFunc(ctx);
         let [ name, path, x, y, width, height, radius ] = ctx.params;
 
-        const canvas = name 
-            ? ctx.data.canvasManager?.get(name)
-            : !name && ctx.data.canvas && ctx.data.canvas[ctx.data.canvas.length - 1] instanceof CanvasBuilder 
-                ? ctx.data.canvas[ctx.data.canvas.length - 1] : null;
+        const canvas = ctx.data.canvasManager?.get(name);
 
         if (!canvas)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No canvas to draw an image on.");
 
-        if (path.toLowerCase().startsWith('canvas:'))
-            path = ctx.data.canvasManager?.get(path.split(':').slice(1).join())?.buffer as Buffer;
+        const a = path.split('://').slice(1).join('://');
+        if (path.toLowerCase().startsWith('canvas://'))
+            path = ctx.data.canvasManager?.get(a)?.buffer as Buffer;
+        else if (path.toLowerCase().startsWith('images://')) 
+            path = ctx.data.imageManager?.get(a);
 
         await canvas.drawImage(path, x, y, width, height, radius);
 

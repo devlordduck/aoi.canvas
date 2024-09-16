@@ -10,8 +10,7 @@ exports.default = new __1.AoiFunction({
             description: "Name of the GIF.",
             type: __1.ParamType.String,
             check: (v, c) => !!(c.data.gifManager && c.data.gifManager instanceof __1.GIFManager && c.data.gifManager.get(v)),
-            checkError: () => "No GIF with provided name found.",
-            optional: true
+            checkError: () => "No GIF with provided name found."
         }
     ],
     code: async (ctx) => {

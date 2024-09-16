@@ -12,8 +12,7 @@ exports.default = new __1.AoiFunction({
             description: "Name of the GIF.",
             type: __1.ParamType.String,
             check: (v, c) => !!(c.data.gifManager && c.data.gifManager instanceof __1.GIFManager && c.data.gifManager.get(v)),
-            checkError: () => "No GIF with provided name found.",
-            optional: true
+            checkError: () => "No GIF with provided name found."
         },
         {
             name: "frame",
@@ -28,15 +27,12 @@ exports.default = new __1.AoiFunction({
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
         let [name, frame] = ctx.params;
-        const gif = name
-            ? ctx.data.gifManager?.get(name)
-            : !name && ctx.data.gif
-                ? ctx.data.gif[ctx.data.gif.length - 1] : null;
+        const gif = ctx.data.gifManager?.get(name);
         if (!gif)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No gif to add the frame to.");
-        if (frame.startsWith("canvas:")) {
+        if (frame.startsWith("canvas://")) {
             frame = ctx.data.canvasManager
-                .get(frame.split("canvas:").slice(1).join(":"))
+                .get(frame.split("canvas://").slice(1).join("://"))
                 .ctx;
         }
         else {

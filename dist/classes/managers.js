@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GIFManager = exports.GradientManager = exports.CanvasManager = exports.Manager = void 0;
+exports.GIFManager = exports.GradientManager = exports.ImageManager = exports.CanvasManager = exports.Manager = void 0;
 const canvas_1 = require("@napi-rs/canvas");
 const __1 = require("../");
 const gifencoder = require("gif-encoder-2");
@@ -21,6 +21,10 @@ class CanvasManager extends Manager {
     create = (name, width, height) => this.set(name, new __1.CanvasBuilder(width, height));
 }
 exports.CanvasManager = CanvasManager;
+;
+class ImageManager extends Manager {
+}
+exports.ImageManager = ImageManager;
 ;
 class GradientManager extends Manager {
     ctx;

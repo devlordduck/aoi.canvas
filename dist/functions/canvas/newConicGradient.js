@@ -39,12 +39,12 @@ exports.default = new __1.AoiFunction({
         const [name, sAngle, x, y] = ctx.params;
         if (!ctx.data?.colorStops)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No color stops.");
-        if (!ctx.data?.gradients)
-            ctx.data.gradients = new __1.GradientManager;
-        if (ctx.data.gradients.get(name))
+        if (!ctx.data?.gradientManager)
+            ctx.data.gradientManager = new __1.GradientManager;
+        if (ctx.data.gradientManager.get(name))
             return ctx.aoiError.fnError(ctx, "custom", {}, `Gradient with name "${name}" already exists.`);
-        ctx.data.gradients.create(name, __1.GradientType.conic, [sAngle, x, y]);
-        ctx.data.colorStops.forEach(x => ctx.data.gradients?.get(name)?.addColorStop(...x));
+        ctx.data.gradientManager.create(name, __1.GradientType.conic, [sAngle, x, y]);
+        ctx.data.colorStops.forEach(x => ctx.data.gradientManager?.get(name)?.addColorStop(...x));
         return {
             code: ctx.util.setCode(data),
             data: ctx.data

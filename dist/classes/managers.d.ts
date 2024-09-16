@@ -1,3 +1,4 @@
+import { Image } from '@napi-rs/canvas';
 import { CanvasBuilder, GradientType } from '../';
 declare const gifencoder: any;
 export declare class Manager<T extends any> {
@@ -10,6 +11,8 @@ export declare class Manager<T extends any> {
 }
 export declare class CanvasManager extends Manager<CanvasBuilder> {
     create: (name: string, width: number, height: number) => Map<string, CanvasBuilder>;
+}
+export declare class ImageManager extends Manager<Image> {
 }
 export declare class GradientManager extends Manager<CanvasGradient> {
     private ctx;
