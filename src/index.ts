@@ -64,7 +64,7 @@ export const registerFonts = (fonts: { name?: string, src: string }[]): void => 
 export class AoiCanvas {
     constructor (client: AoiClient) {
         loadFuncs(client, join(__dirname, './functions')) === 'loaded' ? 
-            log(`Loaded ${funcs} functions.`) : 
+            log(`Successfuly loaded.`) : 
             log('Failed to load the functions.', 'error');
 
         try {

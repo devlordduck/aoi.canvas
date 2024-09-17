@@ -79,7 +79,7 @@ exports.registerFonts = registerFonts;
 class AoiCanvas {
     constructor(client) {
         loadFuncs(client, (0, node_path_1.join)(__dirname, './functions')) === 'loaded' ?
-            (0, exports.log)(`Loaded ${funcs} functions.`) :
+            (0, exports.log)(`Successfuly loaded.`) :
             (0, exports.log)('Failed to load the functions.', 'error');
         try {
             (async () => {

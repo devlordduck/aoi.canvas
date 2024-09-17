@@ -89,7 +89,7 @@ exports.default = new __1.AoiFunction({
     ],
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
-        let [name, style, text, font = "15px " + canvas_1.GlobalFonts.families[0].family, x, y, width, maxWidth, align, baseline, multiline, wrap, offset] = ctx.params;
+        let [name, text, style, font = "15px " + canvas_1.GlobalFonts.families[0].family, x, y, width, maxWidth, align, baseline, multiline, wrap, offset] = ctx.params;
         const canvas = ctx.data.canvasManager?.get(name);
         if (!canvas)
             return ctx.aoiError.fnError(ctx, "custom", {}, "No canvas to draw a circular arc in.");
@@ -116,7 +116,7 @@ exports.default = new __1.AoiFunction({
         }
         else if (style.startsWith("gradient://"))
             style = ctx.data.gradientManager?.get(style.split("://").slice(1).join("://")) ?? style;
-        canvas.strokeText(text, x, y, font, width, maxWidth, align, baseline, multiline, wrap, offset);
+        canvas.strokeText(style, text, x, y, font, width, maxWidth, align, baseline, multiline, wrap, offset);
         return {
             code: ctx.util.setCode(data),
             data: ctx.data

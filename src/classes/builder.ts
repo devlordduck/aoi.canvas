@@ -1,5 +1,5 @@
 import { SKRSContext2D, createCanvas, Image } from '@napi-rs/canvas';
-import { CanvasUtil, fontRegex } from './util';
+import { CanvasUtil } from './util';
 import { FillOrStrokeOrClear, FilterMethod, Filters, textAlign, textBaseline } from '../typings';
 
 // Builder
@@ -49,7 +49,7 @@ export class CanvasBuilder {
   };
 
   public async fillText (
-    style: string | CanvasGradient, 
+    style: string | CanvasGradient | CanvasPattern, 
     text: string, 
     x: number, 
     y: number, 
@@ -102,7 +102,20 @@ export class CanvasBuilder {
     ctx.textBaseline = oldbaseline;
   };  
 
-  public async strokeText (style: string | CanvasGradient, text: string, x: number, y: number, font: string, strokeWidth?: number, maxWidth?: number, align?: textAlign, baseline?: textBaseline, multiline?: boolean, wrap?: boolean, lineOffset?: number) {
+  public async strokeText (
+    style: string | CanvasGradient | CanvasPattern,
+    text: string,
+    x: number,
+    y: number,
+    font: string,
+    strokeWidth?: number,
+    maxWidth?: number,
+    align?: textAlign,
+    baseline?: textBaseline,
+    multiline?: boolean,
+    wrap?: boolean, 
+    lineOffset?: number
+  ) {
     const ctx = this.ctx;
     const oldfont = ctx.font;
     const oldstyle = ctx.strokeStyle;

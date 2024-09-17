@@ -88,7 +88,7 @@ export default new AoiFunction<"djs">({
     ],
     code: async (ctx) => {
         const data = ctx.util.aoiFunc(ctx);
-        let [ name, style, text, font = "15px " + GlobalFonts.families[0].family, x, y, width, maxWidth, align, baseline, multiline, wrap, offset ] = ctx.params;
+        let [ name, text, style, font = "15px " + GlobalFonts.families[0].family, x, y, width, maxWidth, align, baseline, multiline, wrap, offset ] = ctx.params;
 
         const canvas = ctx.data.canvasManager?.get(name);
 
@@ -124,6 +124,7 @@ export default new AoiFunction<"djs">({
             style = ctx.data.gradientManager?.get(style.split("://").slice(1).join("://")) ?? style;
 
         canvas.strokeText(
+            style,
             text,
             x,
             y,

@@ -153,7 +153,8 @@ export class AoiFunction<T extends "aoi.js" | "djs"> {
 
                     let i = 0;
                     while (i < this.data.params.length) {
-                        const value = params[i];
+                        // @ts-ignore
+                        const value = params[i]?.addBrackets();
                         const param = this.data.params[i];
 
                         if (!param.optional && (value === undefined || value === null || value.length === 0))

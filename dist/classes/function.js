@@ -152,7 +152,8 @@ class AoiFunction {
                         return d.aoiError.fnError(d, "custom", {}, "Too many fields.");
                     let i = 0;
                     while (i < this.data.params.length) {
-                        const value = params[i];
+                        // @ts-ignore
+                        const value = params[i]?.addBrackets();
                         const param = this.data.params[i];
                         if (!param.optional && (value === undefined || value === null || value.length === 0))
                             return d.aoiError.fnError(d, "custom", {}, `${param.name.charAt(0).toUpperCase() + param.name.slice(1)} field cannot be empty.`);
