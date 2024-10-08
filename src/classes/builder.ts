@@ -1,4 +1,4 @@
-import { SKRSContext2D, createCanvas, Image } from '@napi-rs/canvas';
+import { SKRSContext2D, createCanvas, Image, loadImage } from '@napi-rs/canvas';
 import { CanvasUtil } from './util';
 import { FillOrStrokeOrClear, FilterMethod, Filters, textAlign, textBaseline } from '../typings';
 
@@ -159,11 +159,9 @@ export class CanvasBuilder {
     ctx.textBaseline = oldbaseline;
   };
 
-  public async drawImage (image: string | Image, x: number, y: number, width?: number, height?: number, radius?: number | number[]) {
+  public async drawImage (image: string | URL | Buffer | ArrayBufferLike | Uint8Array | Image, x: number, y: number, width?: number, height?: number, radius?: number | number[]) {
     const ctx = this.ctx;
-    if (typeof image === 'string')
-      image = await CanvasUtil.fetchImage(image);
-
+    image = await CanvasUtil.fetchImage(image);
     if (!image) return;
     
     width??= image.width;

@@ -11,7 +11,7 @@ export declare class CanvasBuilder {
     rect(type: FillOrStrokeOrClear.stroke, style: string | CanvasGradient | CanvasPattern, x: number, y: number, width?: number, height?: number, lineWidth?: number, radius?: number | number[]): void;
     fillText(style: string | CanvasGradient | CanvasPattern, text: string, x: number, y: number, font: string, maxWidth?: number, align?: textAlign, baseline?: textBaseline, multiline?: boolean, wrap?: boolean, lineOffset?: number): Promise<void>;
     strokeText(style: string | CanvasGradient | CanvasPattern, text: string, x: number, y: number, font: string, strokeWidth?: number, maxWidth?: number, align?: textAlign, baseline?: textBaseline, multiline?: boolean, wrap?: boolean, lineOffset?: number): Promise<void>;
-    drawImage(image: string | Image, x: number, y: number, width?: number, height?: number, radius?: number | number[]): Promise<void>;
+    drawImage(image: string | URL | Buffer | ArrayBufferLike | Uint8Array | Image, x: number, y: number, width?: number, height?: number, radius?: number | number[]): Promise<void>;
     measureText(text: string, font: string): TextMetrics;
     filter(method: FilterMethod, filter?: Filters, value?: number): string | {
         filter: string;

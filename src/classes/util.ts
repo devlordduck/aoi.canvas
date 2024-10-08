@@ -1,4 +1,4 @@
-import { Canvas, GlobalFonts, Image } from '@napi-rs/canvas';
+import { Canvas, GlobalFonts, Image, loadImage } from '@napi-rs/canvas';
 import { existsSync, readFileSync } from 'node:fs';
 import { request } from 'undici';
 import { CanvasBuilder, log } from '..';
@@ -14,9 +14,11 @@ export function isURL (url: string) {
 };
 
 export class CanvasUtil {
-    public static fetchImage = (src: string | Image | Buffer | CanvasBuilder | Canvas): Promise<Image> => {
+    public static fetchImage = loadImage;
+    //public static fetchImage = async (src: string | URL | Buffer | ArrayBufferLike | Uint8Array | Image) => await loadImage(src, { maxRedirects: 30 });
+    /*public static fetchImage = (src: string | Image | Buffer | CanvasBuilder | Canvas): Promise<Image> => {
         return new Promise(async (resolve, reject) => {
-            const image = new Image();
+            const image = new Image(); // worst code ever ngl... why am i such a bad progamer
             let buffer: Buffer;
 
             if (typeof src === 'string') {
@@ -48,7 +50,7 @@ export class CanvasUtil {
             image.onload = () => resolve(image);
             image.onerror = (e) => reject(e);
         });
-    };
+    }; */
 
     public static isValidFont = (font: string) => {
         if (!font)

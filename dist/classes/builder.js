@@ -122,8 +122,7 @@ class CanvasBuilder {
     ;
     async drawImage(image, x, y, width, height, radius) {
         const ctx = this.ctx;
-        if (typeof image === 'string')
-            image = await util_1.CanvasUtil.fetchImage(image);
+        image = await util_1.CanvasUtil.fetchImage(image);
         if (!image)
             return;
         width ??= image.width;

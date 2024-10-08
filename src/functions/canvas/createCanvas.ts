@@ -28,8 +28,8 @@ export default new AoiFunction<"djs">({
         if (!ctx.data.canvasManager)
             ctx.data.canvasManager = new CanvasManager();
 
-        if (ctx.data.canvasManager?.get(name))
-            return ctx.aoiError.fnError(ctx, "custom", {}, `A canvas with provided name already exists.`);
+        // if (ctx.data.canvasManager?.get(name))
+        //     return ctx.aoiError.fnError(ctx, "custom", {}, `A canvas with provided name already exists.`);
 
         ctx.data.canvasManager.create(name, w, h);
 

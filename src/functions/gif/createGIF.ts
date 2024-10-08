@@ -29,8 +29,8 @@ export default new AoiFunction<"djs">({
         if (!ctx.data.gifManager)
             ctx.data.gifManager = new GIFManager();
 
-        if (ctx.data.gifManager?.get(name))
-            return ctx.aoiError.fnError(ctx, "custom", {}, `A gif with provided name already exists.`);
+        // if (ctx.data.gifManager?.get(name))
+        //     return ctx.aoiError.fnError(ctx, "custom", {}, `A gif with provided name already exists.`);
 
         ctx.data.gifManager.create(name, w, h);
         ctx.data.gifManager.get(name).start();

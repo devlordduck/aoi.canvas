@@ -27,8 +27,8 @@ exports.default = new __2.AoiFunction({
         const [name, w, h] = ctx.params;
         if (!ctx.data.canvasManager)
             ctx.data.canvasManager = new __1.CanvasManager();
-        if (ctx.data.canvasManager?.get(name))
-            return ctx.aoiError.fnError(ctx, "custom", {}, `A canvas with provided name already exists.`);
+        // if (ctx.data.canvasManager?.get(name))
+        //     return ctx.aoiError.fnError(ctx, "custom", {}, `A canvas with provided name already exists.`);
         ctx.data.canvasManager.create(name, w, h);
         return {
             code: ctx.util.setCode(data),

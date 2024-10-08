@@ -28,8 +28,8 @@ exports.default = new __2.AoiFunction({
         const [name, w, h] = ctx.params;
         if (!ctx.data.gifManager)
             ctx.data.gifManager = new __1.GIFManager();
-        if (ctx.data.gifManager?.get(name))
-            return ctx.aoiError.fnError(ctx, "custom", {}, `A gif with provided name already exists.`);
+        // if (ctx.data.gifManager?.get(name))
+        //     return ctx.aoiError.fnError(ctx, "custom", {}, `A gif with provided name already exists.`);
         ctx.data.gifManager.create(name, w, h);
         ctx.data.gifManager.get(name).start();
         return {

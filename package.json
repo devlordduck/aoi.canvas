@@ -1,6 +1,6 @@
 {
   "name": "aoi.canvas",
-  "version": "3.0.8",
+  "version": "3.0.10",
   "description": "aoi.canvas - Create and edit images in aoi.js with ease.",
   "main": "dist/index.js",
   "keywords": [
@@ -31,7 +31,7 @@
     "publish": "tsc && echo Done compiling! && node api-gen.js && echo API file generated/updated. && npm publish"
   },
   "dependencies": {
-    "@napi-rs/canvas": "^0.1.44",
+    "@napi-rs/canvas": "0.1.49",
     "gif-encoder-2": "^1.0.5",
     "gif-frames": "^1.0.1"
   },
