@@ -24,8 +24,8 @@
     ],
     "usage": "$addColorStop[gradient?;offset;color]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/addColorStop.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/addColorStop"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/addColorStop.ts",
+    "docs": "https://canvas.aoijs.org/functions/addColorStop"
   },
   {
     "name": "$arc",
@@ -76,8 +76,8 @@
     ],
     "usage": "$arc[canvas;x;y;radius;startAngle;endAngle;counterclockwise?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/arc.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/arc"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/arc.ts",
+    "docs": "https://canvas.aoijs.org/functions/arc"
   },
   {
     "name": "$arcTo",
@@ -122,8 +122,8 @@
     ],
     "usage": "$arcTo[canvas;x1;y1;x2;y2;radius]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/arcTo.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/arcTo"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/arcTo.ts",
+    "docs": "https://canvas.aoijs.org/functions/arcTo"
   },
   {
     "name": "$attachCanvas",
@@ -145,8 +145,8 @@
     "usage": "$attachCanvas[canvas;name?]",
     "example": "```aoi\n$attachCanvas[mycanvas;house.png]\n\n$stroke[mycanvas;#03a9f4;10]\n\n$closePath[mycanvas]\n$lineTo[mycanvas;250;140]\n$lineTo[mycanvas;150;60]\n$moveTo[mycanvas;50;140]\n$beginPath[mycanvas]\n\n$fillRect[mycanvas;#03a9f4;130;190;40;60]\n$strokeRect[mycanvas;#03a9f4;75;140;150;110;10]\n\n$createCanvas[mycanvas;300;320]\n```\n\n![showcase](https://lam.k4scripts.xyz/cdn/aoicanvas/examples/house.png)",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/attachCanvas.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/attachCanvas"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/attachCanvas.ts",
+    "docs": "https://canvas.aoijs.org/functions/attachCanvas"
   },
   {
     "name": "$beginPath",
@@ -161,8 +161,8 @@
     ],
     "usage": "$beginPath[canvas]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/beginPath.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/beginPath"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/beginPath.ts",
+    "docs": "https://canvas.aoijs.org/functions/beginPath"
   },
   {
     "name": "$bezierCurveTo",
@@ -213,8 +213,8 @@
     ],
     "usage": "$bezierCurveTo[canvas;startX;startY;middleX;middleY;endX;endY]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/bezierCurveTo.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/bezierCurveTo"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/bezierCurveTo.ts",
+    "docs": "https://canvas.aoijs.org/functions/bezierCurveTo"
   },
   {
     "name": "$canvasSize",
@@ -241,8 +241,8 @@
     ],
     "usage": "$canvasSize[canvas;property?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/canvasSize.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/canvasSize"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/canvasSize.ts",
+    "docs": "https://canvas.aoijs.org/functions/canvasSize"
   },
   {
     "name": "$canvasTrim",
@@ -257,8 +257,8 @@
     ],
     "usage": "$canvasTrim[canvas]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/canvasTrim.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/canvasTrim"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/canvasTrim.ts",
+    "docs": "https://canvas.aoijs.org/functions/canvasTrim"
   },
   {
     "name": "$clearRect",
@@ -303,8 +303,8 @@
     ],
     "usage": "$clearRect[canvas;x;y;width;height;...radius?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/clearRect.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/clearRect"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/clearRect.ts",
+    "docs": "https://canvas.aoijs.org/functions/clearRect"
   },
   {
     "name": "$clip",
@@ -331,8 +331,8 @@
     ],
     "usage": "$clip[canvas;rule?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/clip.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/clip"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/clip.ts",
+    "docs": "https://canvas.aoijs.org/functions/clip"
   },
   {
     "name": "$closePath",
@@ -347,8 +347,8 @@
     ],
     "usage": "$closePath[canvas]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/closePath.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/closePath"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/closePath.ts",
+    "docs": "https://canvas.aoijs.org/functions/closePath"
   },
   {
     "name": "$compositeOperation",
@@ -423,8 +423,8 @@
     ],
     "usage": "$compositeOperation[canvas;operation?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/compositeOperation.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/compositeOperation"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/compositeOperation.ts",
+    "docs": "https://canvas.aoijs.org/functions/compositeOperation"
   },
   {
     "name": "$createCanvas",
@@ -452,8 +452,8 @@
     "usage": "$createCanvas[canvas;width;height]",
     "example": "```aoi\n$attachCanvas[mycanvas;house.png]\n\n$stroke[mycanvas;#03a9f4;10]\n\n$closePath[mycanvas]\n$lineTo[mycanvas;250;140]\n$lineTo[mycanvas;150;60]\n$moveTo[mycanvas;50;140]\n$beginPath[mycanvas]\n\n$fillRect[mycanvas;#03a9f4;130;190;40;60]\n$strokeRect[mycanvas;#03a9f4;75;140;150;110;10]\n\n$createCanvas[mycanvas;300;320]\n```\n\n![showcase](https://lam.k4scripts.xyz/cdn/aoicanvas/examples/house.png)",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/createCanvas.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/createCanvas"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/createCanvas.ts",
+    "docs": "https://canvas.aoijs.org/functions/createCanvas"
   },
   {
     "name": "$deleteCanvas",
@@ -468,8 +468,8 @@
     ],
     "usage": "$deleteCanvas[canvas]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/deleteCanvas.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/deleteCanvas"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/deleteCanvas.ts",
+    "docs": "https://canvas.aoijs.org/functions/deleteCanvas"
   },
   {
     "name": "$downloadCanvas",
@@ -490,8 +490,8 @@
     ],
     "usage": "$downloadCanvas[canvas;path]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/downloadCanvas.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/downloadCanvas"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/downloadCanvas.ts",
+    "docs": "https://canvas.aoijs.org/functions/downloadCanvas"
   },
   {
     "name": "$drawImage",
@@ -542,8 +542,8 @@
     ],
     "usage": "$drawImage[canvas;path;x;y;width?;height?;...radius?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/drawImage.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/drawImage"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/drawImage.ts",
+    "docs": "https://canvas.aoijs.org/functions/drawImage"
   },
   {
     "name": "$ellipse",
@@ -606,8 +606,8 @@
     ],
     "usage": "$ellipse[canvas;x;y;radiusX;radiusY;rotation;startAngle;endAngle;counterclockwise?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/ellipse.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/ellipse"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/ellipse.ts",
+    "docs": "https://canvas.aoijs.org/functions/ellipse"
   },
   {
     "name": "$fill",
@@ -640,8 +640,8 @@
     ],
     "usage": "$fill[canvas;style;rule?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/fill.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/fill"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/fill.ts",
+    "docs": "https://canvas.aoijs.org/functions/fill"
   },
   {
     "name": "$fillRect",
@@ -692,8 +692,8 @@
     ],
     "usage": "$fillRect[canvas;style;x;y;width;height;...radius?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/fillRect.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/fillRect"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/fillRect.ts",
+    "docs": "https://canvas.aoijs.org/functions/fillRect"
   },
   {
     "name": "$fillText",
@@ -795,8 +795,8 @@
     ],
     "usage": "$fillText[canvas;text;style;font;x;y;maxWidth?;align?;baseline?;multiline?;wrap?;lineOffset?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/fillText.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/fillText"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/fillText.ts",
+    "docs": "https://canvas.aoijs.org/functions/fillText"
   },
   {
     "name": "$filter",
@@ -861,8 +861,8 @@
     ],
     "usage": "$filter[canvas;method;filter?;value?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/filter.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/filter"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/filter.ts",
+    "docs": "https://canvas.aoijs.org/functions/filter"
   },
   {
     "name": "$fontFamilies",
@@ -877,8 +877,8 @@
     ],
     "usage": "$fontFamilies[separator?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/fontFamilies.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/fontFamilies"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/fontFamilies.ts",
+    "docs": "https://canvas.aoijs.org/functions/fontFamilies"
   },
   {
     "name": "$getLineDash",
@@ -893,8 +893,8 @@
     ],
     "usage": "$getLineDash[canvas]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/getLineDash.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/getLineDash"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/getLineDash.ts",
+    "docs": "https://canvas.aoijs.org/functions/getLineDash"
   },
   {
     "name": "$getPixelColors",
@@ -933,8 +933,8 @@
     ],
     "usage": "$getPixelColors[canvas;x;y;width;height]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/getPixelColors.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/getPixelColors"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/getPixelColors.ts",
+    "docs": "https://canvas.aoijs.org/functions/getPixelColors"
   },
   {
     "name": "$imageSmoothing",
@@ -955,8 +955,8 @@
     ],
     "usage": "$imageSmoothing[canvas;enabled?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/imageSmoothing.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/imageSmoothing"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/imageSmoothing.ts",
+    "docs": "https://canvas.aoijs.org/functions/imageSmoothing"
   },
   {
     "name": "$letterSpacing",
@@ -977,8 +977,8 @@
     ],
     "usage": "$letterSpacing[canvas;spacing]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/letterSpacing.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/letterSpacing"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/letterSpacing.ts",
+    "docs": "https://canvas.aoijs.org/functions/letterSpacing"
   },
   {
     "name": "$lineJoin",
@@ -1007,8 +1007,8 @@
     ],
     "usage": "$lineJoin[canvas;shape?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/lineJoin.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/lineJoin"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/lineJoin.ts",
+    "docs": "https://canvas.aoijs.org/functions/lineJoin"
   },
   {
     "name": "$lineTo",
@@ -1035,8 +1035,8 @@
     ],
     "usage": "$lineTo[canvas;x;y]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/lineTo.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/lineTo"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/lineTo.ts",
+    "docs": "https://canvas.aoijs.org/functions/lineTo"
   },
   {
     "name": "$loadImage",
@@ -1057,8 +1057,8 @@
     ],
     "usage": "$loadImage[image;path]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/loadImage.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/loadImage"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/loadImage.ts",
+    "docs": "https://canvas.aoijs.org/functions/loadImage"
   },
   {
     "name": "$measureText",
@@ -1113,8 +1113,8 @@
     ],
     "usage": "$measureText[canvas;text;font;property?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/measureText.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/measureText"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/measureText.ts",
+    "docs": "https://canvas.aoijs.org/functions/measureText"
   },
   {
     "name": "$moveTo",
@@ -1141,8 +1141,8 @@
     ],
     "usage": "$moveTo[canvas;x;y]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/moveTo.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/moveTo"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/moveTo.ts",
+    "docs": "https://canvas.aoijs.org/functions/moveTo"
   },
   {
     "name": "$newConicGradient",
@@ -1181,8 +1181,8 @@
     ],
     "usage": "$newConicGradient[gradient;startAngle;x;y;...stops?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/newConicGradient.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/newConicGradient"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/newConicGradient.ts",
+    "docs": "https://canvas.aoijs.org/functions/newConicGradient"
   },
   {
     "name": "$newLinearGradient",
@@ -1227,8 +1227,8 @@
     ],
     "usage": "$newLinearGradient[gradient;x1;y1;x2;y2;...stops?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/newLinearGradient.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/newLinearGradient"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/newLinearGradient.ts",
+    "docs": "https://canvas.aoijs.org/functions/newLinearGradient"
   },
   {
     "name": "$newRadialGradient",
@@ -1285,8 +1285,8 @@
     ],
     "usage": "$newRadialGradient[gradient;x1;y1;r1;x2;y2;r2;...stops?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/newRadialGradient.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/newRadialGradient"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/newRadialGradient.ts",
+    "docs": "https://canvas.aoijs.org/functions/newRadialGradient"
   },
   {
     "name": "$opacity",
@@ -1307,8 +1307,8 @@
     ],
     "usage": "$opacity[canvas;value?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/opacity.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/opacity"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/opacity.ts",
+    "docs": "https://canvas.aoijs.org/functions/opacity"
   },
   {
     "name": "$putPixelsColors",
@@ -1353,8 +1353,8 @@
     ],
     "usage": "$putPixelsColors[canvas;x;y;width;height;pixels]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/putPixelsColors.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/putPixelsColors"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/putPixelsColors.ts",
+    "docs": "https://canvas.aoijs.org/functions/putPixelsColors"
   },
   {
     "name": "$quadraticCurveTo",
@@ -1393,8 +1393,8 @@
     ],
     "usage": "$quadraticCurveTo[canvas;startX;startY;endX;endY]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/quadraticCurveTo.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/quadraticCurveTo"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/quadraticCurveTo.ts",
+    "docs": "https://canvas.aoijs.org/functions/quadraticCurveTo"
   },
   {
     "name": "$rect",
@@ -1439,8 +1439,8 @@
     ],
     "usage": "$rect[canvas;x;y;width;height;...radius?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/rect.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/rect"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/rect.ts",
+    "docs": "https://canvas.aoijs.org/functions/rect"
   },
   {
     "name": "$registerFont",
@@ -1462,8 +1462,8 @@
     "usage": "$registerFont[src;name?]",
     "example": "### Loading a font\n```aoi\n$registerFont[./fonts/Arial.ttf;Arial]\n```\n\n### Loading fonts from a directory\n```aoi\n$registerFont[./fonts]\n```",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/registerFont.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/registerFont"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/registerFont.ts",
+    "docs": "https://canvas.aoijs.org/functions/registerFont"
   },
   {
     "name": "$resetTransform",
@@ -1478,8 +1478,8 @@
     ],
     "usage": "$resetTransform[canvas]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/resetTransform.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/resetTransform"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/resetTransform.ts",
+    "docs": "https://canvas.aoijs.org/functions/resetTransform"
   },
   {
     "name": "$resizeCanvas",
@@ -1506,8 +1506,8 @@
     ],
     "usage": "$resizeCanvas[canvas;width;height]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/resizeCanvas.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/resizeCanvas"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/resizeCanvas.ts",
+    "docs": "https://canvas.aoijs.org/functions/resizeCanvas"
   },
   {
     "name": "$restore",
@@ -1522,8 +1522,8 @@
     ],
     "usage": "$restore[canvas]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/restore.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/restore"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/restore.ts",
+    "docs": "https://canvas.aoijs.org/functions/restore"
   },
   {
     "name": "$rotation",
@@ -1544,8 +1544,8 @@
     ],
     "usage": "$rotation[canvas;angle]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/rotation.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/rotation"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/rotation.ts",
+    "docs": "https://canvas.aoijs.org/functions/rotation"
   },
   {
     "name": "$save",
@@ -1560,8 +1560,8 @@
     ],
     "usage": "$save[canvas]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/save.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/save"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/save.ts",
+    "docs": "https://canvas.aoijs.org/functions/save"
   },
   {
     "name": "$scale",
@@ -1588,8 +1588,8 @@
     ],
     "usage": "$scale[canvas;x;y]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/scale.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/scale"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/scale.ts",
+    "docs": "https://canvas.aoijs.org/functions/scale"
   },
   {
     "name": "$setLineDash",
@@ -1610,8 +1610,8 @@
     ],
     "usage": "$setLineDash[canvas;...segments?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/setLineDash.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/setLineDash"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/setLineDash.ts",
+    "docs": "https://canvas.aoijs.org/functions/setLineDash"
   },
   {
     "name": "$setShadow",
@@ -1644,8 +1644,8 @@
     ],
     "usage": "$setShadow[canvas;blur;style;...offset?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/setShadow.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/setShadow"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/setShadow.ts",
+    "docs": "https://canvas.aoijs.org/functions/setShadow"
   },
   {
     "name": "$setTransform",
@@ -1696,8 +1696,8 @@
     ],
     "usage": "$setTransform[canvas;a;b;c;d;e;f]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/setTransform.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/setTransform"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/setTransform.ts",
+    "docs": "https://canvas.aoijs.org/functions/setTransform"
   },
   {
     "name": "$stroke",
@@ -1724,8 +1724,8 @@
     ],
     "usage": "$stroke[canvas;style;width?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/stroke.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/stroke"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/stroke.ts",
+    "docs": "https://canvas.aoijs.org/functions/stroke"
   },
   {
     "name": "$strokeRect",
@@ -1782,8 +1782,8 @@
     ],
     "usage": "$strokeRect[canvas;style;x;y;width;height;strokeWidth?;...radius?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/strokeRect.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/strokeRect"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/strokeRect.ts",
+    "docs": "https://canvas.aoijs.org/functions/strokeRect"
   },
   {
     "name": "$strokeText",
@@ -1891,8 +1891,8 @@
     ],
     "usage": "$strokeText[canvas;text;style;font?;x;y;lineWidth?;maxWidth?;align?;baseline?;multiline?;wrap?;lineOffset?]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/strokeText.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/strokeText"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/strokeText.ts",
+    "docs": "https://canvas.aoijs.org/functions/strokeText"
   },
   {
     "name": "$transform",
@@ -1943,8 +1943,8 @@
     ],
     "usage": "$transform[canvas;a;b;c;d;e;f]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/transform.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/transform"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/transform.ts",
+    "docs": "https://canvas.aoijs.org/functions/transform"
   },
   {
     "name": "$translate",
@@ -1971,8 +1971,8 @@
     ],
     "usage": "$translate[canvas;x;y]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/translate.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/translate"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/translate.ts",
+    "docs": "https://canvas.aoijs.org/functions/translate"
   },
   {
     "name": "$wordSpacing",
@@ -1993,8 +1993,8 @@
     ],
     "usage": "$wordSpacing[canvas;spacing]",
     "category": "canvas",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/canvas/wordSpacing.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/canvas/wordSpacing"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/canvas/wordSpacing.ts",
+    "docs": "https://canvas.aoijs.org/functions/wordSpacing"
   },
   {
     "name": "$addFrame",
@@ -2015,8 +2015,8 @@
     ],
     "usage": "$addFrame[gif;frame]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/addFrame.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/addFrame"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/addFrame.ts",
+    "docs": "https://canvas.aoijs.org/functions/addFrame"
   },
   {
     "name": "$attachGIF",
@@ -2037,8 +2037,8 @@
     ],
     "usage": "$attachGIF[gif;name?]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/attachGIF.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/attachGIF"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/attachGIF.ts",
+    "docs": "https://canvas.aoijs.org/functions/attachGIF"
   },
   {
     "name": "$createGIF",
@@ -2065,8 +2065,8 @@
     ],
     "usage": "$createGIF[name;width;height]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/createGIF.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/createGIF"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/createGIF.ts",
+    "docs": "https://canvas.aoijs.org/functions/createGIF"
   },
   {
     "name": "$deleteGIF",
@@ -2081,8 +2081,8 @@
     ],
     "usage": "$deleteGIF[gif]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/deleteGif.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/deleteGIF"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/deleteGif.ts",
+    "docs": "https://canvas.aoijs.org/functions/deleteGIF"
   },
   {
     "name": "$getFrames",
@@ -2109,8 +2109,8 @@
     ],
     "usage": "$getFrames[src;output;amount?]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/getFrames.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/getFrames"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/getFrames.ts",
+    "docs": "https://canvas.aoijs.org/functions/getFrames"
   },
   {
     "name": "$gifFinish",
@@ -2125,8 +2125,8 @@
     ],
     "usage": "$gifFinish[gif]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/gifFinish.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/gifFinish"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/gifFinish.ts",
+    "docs": "https://canvas.aoijs.org/functions/gifFinish"
   },
   {
     "name": "$setDelay",
@@ -2147,8 +2147,8 @@
     ],
     "usage": "$setDelay[gif;delay]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/setDelay.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/setDelay"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/setDelay.ts",
+    "docs": "https://canvas.aoijs.org/functions/setDelay"
   },
   {
     "name": "$setFPS",
@@ -2169,8 +2169,8 @@
     ],
     "usage": "$setFPS[gif;frames?]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/setFPS.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/setFPS"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/setFPS.ts",
+    "docs": "https://canvas.aoijs.org/functions/setFPS"
   },
   {
     "name": "$setQuality",
@@ -2191,8 +2191,8 @@
     ],
     "usage": "$setQuality[gif;quality]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/setQuality.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/setQuality"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/setQuality.ts",
+    "docs": "https://canvas.aoijs.org/functions/setQuality"
   },
   {
     "name": "$setRepeat",
@@ -2213,8 +2213,8 @@
     ],
     "usage": "$setRepeat[gif;loops]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/setRepeat.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/setRepeat"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/setRepeat.ts",
+    "docs": "https://canvas.aoijs.org/functions/setRepeat"
   },
   {
     "name": "$setThreshold",
@@ -2235,8 +2235,8 @@
     ],
     "usage": "$setThreshold[gif;percentage]",
     "category": "gif",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/gif/setThreshold.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/gif/setThreshold"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/gif/setThreshold.ts",
+    "docs": "https://canvas.aoijs.org/functions/setThreshold"
   },
   {
     "name": "$canvasVersion",
@@ -2244,8 +2244,8 @@
     "params": [],
     "usage": "$canvasVersion",
     "category": "other",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/other/canvasVersion.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/other/canvasVersion"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/other/canvasVersion.ts",
+    "docs": "https://canvas.aoijs.org/functions/canvasVersion"
   },
   {
     "name": "$imageSize",
@@ -2272,7 +2272,7 @@
     ],
     "usage": "$imageSize[src;property?]",
     "category": "other",
-    "src": "https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/other/imageSize.ts",
-    "docs": "https://aoi.js.org/extensions/aoijs/aoicanvas/functions/other/imageSize"
+    "src": "https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/other/imageSize.ts",
+    "docs": "https://canvas.aoijs.org/functions/imageSize"
   }
 ]
