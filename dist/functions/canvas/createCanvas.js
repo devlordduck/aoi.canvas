@@ -34,6 +34,26 @@ exports.default = new __2.AoiFunction({
             code: ctx.util.setCode(data),
             data: ctx.data
         };
+    },
+    docs: {
+        example: `\`\`\`aoi
+$attachCanvas[mycanvas;house.png]
+
+$stroke[mycanvas;#03a9f4;10]
+
+$closePath[mycanvas]
+$lineTo[mycanvas;250;140]
+$lineTo[mycanvas;150;60]
+$moveTo[mycanvas;50;140]
+$beginPath[mycanvas]
+
+$fillRect[mycanvas;#03a9f4;130;190;40;60]
+$strokeRect[mycanvas;#03a9f4;75;140;150;110;10]
+
+$createCanvas[mycanvas;300;320]
+\`\`\`
+
+![showcase](https://lam.k4scripts.xyz/cdn/aoicanvas/examples/house.png)`
     }
 });
 //# sourceMappingURL=createCanvas.js.map

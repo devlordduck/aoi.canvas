@@ -38,5 +38,16 @@ export default new AoiFunction<"djs">({
             code: ctx.util.setCode(data),
             data: ctx.data
         };
-    }    
+    },
+    docs: {
+        example: `### Loading a font
+\`\`\`aoi
+$registerFont[./fonts/Arial.ttf;Arial]
+\`\`\`
+
+### Loading fonts from a directory
+\`\`\`aoi
+$registerFont[./fonts]
+\`\`\``
+    }
 });
