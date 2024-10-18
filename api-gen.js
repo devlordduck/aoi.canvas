@@ -26,8 +26,8 @@ const loadFuncs = (path) =>
                     functions.push({
                         ...funcInfo,
                         category,
-                        src: `https://github.com/devlorduck/aoi.canvas/tree/v2/src/functions/${category}/${file.split('.').slice(0, -1).join('.')}.ts`,
-                        docs: `https://aoi.js.org/extensions/aoijs/aoicanvas/functions/${category}/${funcInfo.name.slice(1)}`
+                        src: `https://github.com/devlordduck/aoi.canvas/tree/v2/src/functions/${category}/${file.split('.').slice(0, -1).join('.')}.ts`,
+                        docs: `https://canvas.aoijs.org/functions/${funcInfo.name.slice(1)}`
                     });
                 }; 
             } catch (err) { console.error(err) };
